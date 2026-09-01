@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -54,7 +54,7 @@ export async function updateEventAttendees(eventId: string, attendeesRaw: string
   const uniqueAttendeeNames = Array.from(new Set(attendeeNames));
 
   try {
-    await prisma.\([
+    await prisma.$transaction([
       prisma.attendance.deleteMany({
         where: { eventId }
       }),
