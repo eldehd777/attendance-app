@@ -34,7 +34,7 @@ export default function StatsClient({ data }: { data: StatsData[] }) {
         />
       </div>
 
-      <div className="rounded-md border bg-white">
+      <div className="rounded-md border bg-card">
         <Table>
           <TableHeader>
             <TableRow>

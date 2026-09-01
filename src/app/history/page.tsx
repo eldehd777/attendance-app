@@ -58,7 +58,7 @@ export default async function HistoryPage() {
             </Card>
           ))
         ) : (
-          <div className="text-center py-12 text-slate-500 bg-white rounded-lg border">
+          <div className="text-center py-12 text-slate-500 bg-card rounded-lg border">
             등록된 행사 기록이 없습니다.
           </div>
         )}
