@@ -46,3 +46,55 @@ export async function addEventWithAttendances(formData: FormData) {
     return { success: false, error: "저장 중 오류가 발생했습니다." };
   }
 }
+
+export async function updateEventAttendees(eventId: string, attendeesRaw: string) {
+  const attendeeNames = attendeesRaw
+    .split(/[,\n]/)
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
+
+  const uniqueAttendeeNames = Array.from(new Set(attendeeNames));
+
+  try {
+    await prisma.$transaction([
+      prisma.attendance.deleteMany({
+        where: { eventId }
+      }),
+      ...uniqueAttendeeNames.map(name => prisma.attendance.create({
+        data: {
+          eventId,
+          attendeeName: name
+        }
+      }))
+    ]);
+
+    revalidatePath("/history");
+    revalidatePath("/stats");
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating attendees:", error);
+    return { success: false, error: "수정 중 오류가 발생했습니다." };
+  }
+}
+
+export async function deleteEvent(eventId: string, password: string) {
+  // 기본 비밀번호는 1234로 설정하고, Vercel 환경변수로 변경 가능하게 처리
+  const adminPw = process.env.ADMIN_PASSWORD || "1234";
+  
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+
+  try {
+    await prisma.event.delete({
+      where: { id: eventId }
+    });
+    
+    revalidatePath("/history");
+    revalidatePath("/stats");
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting event:", error);
+    return { success: false, error: "삭제 중 오류가 발생했습니다." };
+  }
+}
