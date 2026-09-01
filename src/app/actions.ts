@@ -159,3 +159,25 @@ export async function deleteAbsence(id: string, password: string) {
     return { success: false, error: "삭제 중 오류가 발생했습니다." };
   }
 }
+
+
+export async function getAdmins() {
+  const setting = await prisma.setting.findUnique({
+    where: { id: "admin_list" }
+  });
+  if (setting && setting.value) {
+    return setting.value.split(",").map(s => s.trim());
+  }
+  return ["한원석", "최지식", "안병현", "김혜민", "김태일", "김혜원", "이주홍", "장은영", "고준혁"];
+}
+
+export async function saveAdmins(admins: string[]) {
+  const value = admins.join(",");
+  await prisma.setting.upsert({
+    where: { id: "admin_list" },
+    update: { value },
+    create: { id: "admin_list", value }
+  });
+  revalidatePath("/");
+  return { success: true };
+}
