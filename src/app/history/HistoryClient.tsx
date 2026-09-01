@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { updateEventAttendees, deleteEvent } from "../actions";
@@ -31,7 +31,7 @@ function EventCard({ event }: { event: any }) {
   }
 
   async function handleDelete() {
-    const pwd = window.prompt("관리자 비밀번호를 입력하세요 (기본값: 1234):");
+    const pwd = window.prompt("관리자 비밀번호를 입력하세요:");
     if (!pwd) return;
     
     setLoading(true);

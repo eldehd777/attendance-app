@@ -78,8 +78,8 @@ export async function updateEventAttendees(eventId: string, attendeesRaw: string
 }
 
 export async function deleteEvent(eventId: string, password: string) {
-  // 기본 비밀번호는 1234로 설정하고, Vercel 환경변수로 변경 가능하게 처리
-  const adminPw = process.env.ADMIN_PASSWORD || "1234";
+  // 기본 비밀번호는 7913으로 설정하고, Vercel 환경변수로 변경 가능하게 처리
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
   
   if (password !== adminPw) {
     return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
