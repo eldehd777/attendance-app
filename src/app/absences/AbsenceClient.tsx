@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { addAbsence, updateAbsenceCount } from "../actions";
@@ -98,7 +98,7 @@ export default function AbsenceClient({ initialData }: { initialData: Absence[] 
       <Dialog open={!!selectedUser} onOpenChange={(open) => !open && setSelectedUser(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{selectedUser?.name}님의 미참여 횟수 수정</DialogTitle>
+            <DialogTitle className="flex flex-wrap">{selectedUser?.name}님의 미참여 횟수 수정</DialogTitle>
             <DialogDescription>
               현재 누적 {selectedUser?.count}회 미참여로 기록되어 있습니다. 올바른 횟수로 수정해주세요.
             </DialogDescription>

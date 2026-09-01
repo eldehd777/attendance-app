@@ -103,9 +103,9 @@ export default function StatsClient({ data }: { data: StatsData[] }) {
       <Dialog open={!!selectedUser} onOpenChange={(open) => !open && setSelectedUser(null)}>
         <DialogContent className="max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl flex items-center gap-2">
-              {selectedUser?.name}님의 출석 기록 
-              {selectedUser?.isHellfire && "🔥"}
+            <DialogTitle className="text-2xl flex flex-wrap items-center gap-2">
+              <span>{selectedUser?.name}님의 출석 기록</span>
+              {selectedUser?.isHellfire && <span>🔥</span>}
             </DialogTitle>
             <DialogDescription>
               총 {selectedUser?.count}회 참석하셨습니다. (최근 6개월: {selectedUser?.recentCount}회)
