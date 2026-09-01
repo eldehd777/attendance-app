@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { addEventWithAttendances, saveAdmins } from "./actions";
@@ -114,7 +114,7 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
             </div>
 
             {message && (
-              <div className={p-3 text-sm rounded-md font-bold }>
+              <div className={`p-3 text-sm rounded-md font-bold ${message.includes("성공") ? "bg-primary/20 text-primary" : "bg-destructive/20 text-destructive"}`}>
                 {message}
               </div>
             )}
