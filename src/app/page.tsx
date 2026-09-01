@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { useToast } from "@/components/ui/toast"; // wait, shadcn toast hook is use-toast. Let's check how it generated.
-// Actually the new shadcn uses sonner or useToast. Let's just use standard state for success message to be safe if useToast isn't exported correctly.
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
