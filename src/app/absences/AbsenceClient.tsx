@@ -29,20 +29,27 @@ export default function AbsenceClient({ initialData }: { initialData: Absence[] 
     e.preventDefault();
     if (!nameInput.trim()) return;
     
+    const pwd = window.prompt("관리자 비밀번호를 입력하세요:");
+    if (!pwd) return;
+
     setLoading(true);
-    const res = await addAbsence(nameInput);
+    const res = await addAbsence(nameInput, pwd);
     if (res.success) {
       setNameInput("");
     } else {
-      alert(res.error);
+      alert(res.error || "추가 실패");
     }
     setLoading(false);
   }
 
   async function handleSaveEdit() {
     if (!selectedUser) return;
+    
+    const pwd = window.prompt("관리자 비밀번호를 입력하세요:");
+    if (!pwd) return;
+
     setLoading(true);
-    const res = await updateAbsenceCount(selectedUser.id, editCount);
+    const res = await updateAbsenceCount(selectedUser.id, editCount, pwd);
     if (res.success) {
       setSelectedUser(null);
     } else {

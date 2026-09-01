@@ -45,7 +45,12 @@ export async function addEventWithAttendances(formData: FormData) {
   }
 }
 
-export async function updateEventAttendees(eventId: string, attendeesRaw: string) {
+export async function updateEventAttendees(eventId: string, attendeesRaw: string, password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+
   const attendeeNames = attendeesRaw
     .split(/[,\n]/)
     .map((s) => s.trim())
@@ -96,7 +101,12 @@ export async function deleteEvent(eventId: string, password: string) {
   }
 }
 
-export async function addAbsence(namesRaw: string) {
+export async function addAbsence(namesRaw: string, password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+
   try {
     const names = namesRaw
       .split(/[,\n\s]+/)
@@ -123,7 +133,12 @@ export async function addAbsence(namesRaw: string) {
   }
 }
 
-export async function updateAbsenceCount(id: string, count: number) {
+export async function updateAbsenceCount(id: string, count: number, password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+
   try {
     if (count < 0) return { success: false, error: "횟수는 0 이상이어야 합니다." };
     

@@ -5,7 +5,12 @@ import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
-export async function saveRule(content: string) {
+export async function saveRule(content: string, password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+
   try {
     const rules = await prisma.rule.findMany();
     if (rules.length > 0) {

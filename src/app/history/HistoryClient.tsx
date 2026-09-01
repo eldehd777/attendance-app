@@ -20,8 +20,11 @@ function EventCard({ event }: { event: any }) {
   );
 
   async function handleSave() {
+    const pwd = window.prompt("관리자 비밀번호를 입력하세요:");
+    if (!pwd) return;
+
     setLoading(true);
-    const res = await updateEventAttendees(event.id, attendeesRaw);
+    const res = await updateEventAttendees(event.id, attendeesRaw, pwd);
     setLoading(false);
     if (res.success) {
       setIsEditing(false);

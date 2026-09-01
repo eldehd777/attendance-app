@@ -11,8 +11,11 @@ export default function RulesClient({ initialContent }: { initialContent: string
   const [loading, setLoading] = useState(false);
 
   async function handleSave() {
+    const pwd = window.prompt("관리자 비밀번호를 입력하세요:");
+    if (!pwd) return;
+
     setLoading(true);
-    const res = await saveRule(content);
+    const res = await saveRule(content, pwd);
     if (res.success) {
       setIsEditing(false);
     } else {
