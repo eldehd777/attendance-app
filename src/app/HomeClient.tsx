@@ -38,16 +38,19 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
   }
 
   async function handleSaveAdmins() {
+    const pwd = window.prompt("관리자 비밀번호를 입력하세요:");
+    if (!pwd) return;
+
     setLoading(true);
     const names = adminInput.split(/[,\n\s]+/).map(s => s.trim()).filter(s => s.length > 0);
     const uniqueNames = Array.from(new Set(names));
     
-    const res = await saveAdmins(uniqueNames);
+    const res = await saveAdmins(uniqueNames, pwd);
     if (res.success) {
       setAdmins(uniqueNames);
       setShowAdminDialog(false);
     } else {
-      alert("운영진 저장 실패");
+      alert(res.error || "운영진 저장 실패");
     }
     setLoading(false);
   }

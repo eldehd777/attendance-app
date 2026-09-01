@@ -171,7 +171,13 @@ export async function getAdmins() {
   return ["한원석", "최지식", "안병현", "김혜민", "김태일", "김혜원", "이주홍", "장은영", "고준혁"];
 }
 
-export async function saveAdmins(admins: string[]) {
+export async function saveAdmins(admins: string[], password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+
   const value = admins.join(",");
   await prisma.setting.upsert({
     where: { id: "admin_list" },
