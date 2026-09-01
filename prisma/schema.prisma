@@ -31,3 +31,11 @@ model Rule {
   content   String
   updatedAt DateTime @updatedAt
 }
+
+model Absence {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  count     Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

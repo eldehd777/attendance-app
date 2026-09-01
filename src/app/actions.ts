@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -15,13 +15,11 @@ export async function addEventWithAttendances(formData: FormData) {
     throw new Error("모든 필드를 입력해주세요.");
   }
 
-  // 쉼표 또는 줄바꿈으로 분리하고 양옆 공백 제거 후 빈 문자열 필터링
   const attendeeNames = attendeesRaw
     .split(/[,\n]/)
     .map((s) => s.trim())
     .filter((s) => s.length > 0);
 
-  // 중복 이름 제거 (한 행사에 같은 사람이 두 번 체크되지 않도록)
   const uniqueAttendeeNames = Array.from(new Set(attendeeNames));
 
   try {
@@ -56,7 +54,7 @@ export async function updateEventAttendees(eventId: string, attendeesRaw: string
   const uniqueAttendeeNames = Array.from(new Set(attendeeNames));
 
   try {
-    await prisma.$transaction([
+    await prisma.\([
       prisma.attendance.deleteMany({
         where: { eventId }
       }),
@@ -78,7 +76,6 @@ export async function updateEventAttendees(eventId: string, attendeesRaw: string
 }
 
 export async function deleteEvent(eventId: string, password: string) {
-  // 기본 비밀번호는 7913으로 설정하고, Vercel 환경변수로 변경 가능하게 처리
   const adminPw = process.env.ADMIN_PASSWORD || "7913";
   
   if (password !== adminPw) {
@@ -96,5 +93,48 @@ export async function deleteEvent(eventId: string, password: string) {
   } catch (error) {
     console.error("Error deleting event:", error);
     return { success: false, error: "삭제 중 오류가 발생했습니다." };
+  }
+}
+
+export async function addAbsence(name: string) {
+  try {
+    const trimmed = name.trim();
+    if (!trimmed) return { success: false, error: "이름을 입력해주세요." };
+
+    await prisma.absence.upsert({
+      where: { name: trimmed },
+      update: {
+        count: {
+          increment: 1,
+        },
+      },
+      create: {
+        name: trimmed,
+        count: 1,
+      },
+    });
+
+    revalidatePath("/absences");
+    return { success: true };
+  } catch (error) {
+    console.error("Error adding absence:", error);
+    return { success: false, error: "처리 중 오류가 발생했습니다." };
+  }
+}
+
+export async function updateAbsenceCount(id: string, count: number) {
+  try {
+    if (count < 0) return { success: false, error: "횟수는 0 이상이어야 합니다." };
+    
+    await prisma.absence.update({
+      where: { id },
+      data: { count }
+    });
+    
+    revalidatePath("/absences");
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating absence:", error);
+    return { success: false, error: "수정 중 오류가 발생했습니다." };
   }
 }
