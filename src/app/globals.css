@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.13 0.02 15); /* Very dark reddish-charcoal (Hell) */
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.18 0.02 15);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.18 0.02 15);
+  --popover-foreground: oklch(0.95 0 0);
+  
+  /* Primary: Golf Green */
+  --primary: oklch(0.6 0.15 145); 
+  --primary-foreground: oklch(0.1 0 0);
+  
+  /* Secondary: Hellfire Red/Orange */
+  --secondary: oklch(0.6 0.2 30);
+  --secondary-foreground: oklch(0.98 0 0);
+  
+  --muted: oklch(0.25 0.02 15);
+  --muted-foreground: oklch(0.65 0 0);
+  
+  --accent: oklch(0.6 0.2 30); /* Fire Accent */
+  --accent-foreground: oklch(0.95 0 0);
+  
+  --destructive: oklch(0.5 0.2 30);
+  --destructive-foreground: oklch(0.95 0 0);
+  
+  --border: oklch(0.3 0.05 20);
+  --input: oklch(0.3 0.05 20);
+  --ring: oklch(0.6 0.2 30); /* Fire ring */
+  
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Same for dark since this is a dark-first theme */
+  --background: oklch(0.13 0.02 15); 
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.18 0.02 15);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.18 0.02 15);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.6 0.15 145); 
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.6 0.2 30);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.25 0.02 15);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.6 0.2 30);
+  --accent-foreground: oklch(0.95 0 0);
+  --destructive: oklch(0.5 0.2 30);
+  --destructive-foreground: oklch(0.95 0 0);
+  --border: oklch(0.3 0.05 20);
+  --input: oklch(0.3 0.05 20);
+  --ring: oklch(0.6 0.2 30);
+}
+
+@theme {
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
