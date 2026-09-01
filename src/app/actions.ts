@@ -96,23 +96,24 @@ export async function deleteEvent(eventId: string, password: string) {
   }
 }
 
-export async function addAbsence(name: string) {
+export async function addAbsence(namesRaw: string) {
   try {
-    const trimmed = name.trim();
-    if (!trimmed) return { success: false, error: "이름을 입력해주세요." };
+    const names = namesRaw
+      .split(/[,\n\s]+/)
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
 
-    await prisma.absence.upsert({
-      where: { name: trimmed },
-      update: {
-        count: {
-          increment: 1,
-        },
-      },
-      create: {
-        name: trimmed,
-        count: 1,
-      },
-    });
+    if (names.length === 0) return { success: false, error: "이름을 입력해주세요." };
+
+    await prisma.$transaction(
+      names.map((name) =>
+        prisma.absence.upsert({
+          where: { name },
+          update: { count: { increment: 1 } },
+          create: { name, count: 1 },
+        })
+      )
+    );
 
     revalidatePath("/absences");
     return { success: true };
@@ -136,5 +137,25 @@ export async function updateAbsenceCount(id: string, count: number) {
   } catch (error) {
     console.error("Error updating absence:", error);
     return { success: false, error: "수정 중 오류가 발생했습니다." };
+  }
+}
+
+export async function deleteAbsence(id: string, password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+
+  try {
+    await prisma.absence.delete({
+      where: { id }
+    });
+    
+    revalidatePath("/absences");
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting absence:", error);
+    return { success: false, error: "삭제 중 오류가 발생했습니다." };
   }
 }

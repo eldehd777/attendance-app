@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { addAbsence, updateAbsenceCount } from "../actions";
+import { addAbsence, updateAbsenceCount, deleteAbsence } from "../actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -51,6 +51,21 @@ export default function AbsenceClient({ initialData }: { initialData: Absence[] 
     setLoading(false);
   }
 
+  async function handleDelete() {
+    if (!selectedUser) return;
+    const pwd = window.prompt("관리자 비밀번호를 입력하세요:");
+    if (!pwd) return;
+
+    setLoading(true);
+    const res = await deleteAbsence(selectedUser.id, pwd);
+    if (res.success) {
+      setSelectedUser(null);
+    } else {
+      alert(res.error);
+    }
+    setLoading(false);
+  }
+
   function openEdit(user: Absence) {
     setSelectedUser(user);
     setEditCount(user.count);
@@ -61,14 +76,14 @@ export default function AbsenceClient({ initialData }: { initialData: Absence[] 
       {/* Top Input Form */}
       <form onSubmit={handleAdd} className="flex gap-2 sticky top-4 z-10 bg-background/95 backdrop-blur py-4 border-b border-secondary/50">
         <Input
-          placeholder="미참여 회원 이름 입력 (예: 홍길동)"
+          placeholder="이름 입력 (쉼표나 띄어쓰기로 여러 명 입력 가능)"
           value={nameInput}
           onChange={(e) => setNameInput(e.target.value)}
           disabled={loading}
           className="flex-1 bg-background"
         />
         <Button type="submit" disabled={loading || !nameInput.trim()}>
-          {loading ? "기록중.." : "추가 (+1)"}
+          {loading ? "기록중.." : "추가"}
         </Button>
       </form>
 
@@ -115,13 +130,18 @@ export default function AbsenceClient({ initialData }: { initialData: Absence[] 
             />
           </div>
 
-          <div className="flex justify-end gap-2 mt-4">
-            <Button variant="outline" onClick={() => setSelectedUser(null)} disabled={loading}>
-              취소
+          <div className="flex justify-between items-center mt-4">
+            <Button variant="destructive" onClick={handleDelete} disabled={loading}>
+              {loading ? "처리중.." : "기록 삭제"}
             </Button>
-            <Button onClick={handleSaveEdit} disabled={loading}>
-              {loading ? "저장 중..." : "수정 완료"}
-            </Button>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => setSelectedUser(null)} disabled={loading}>
+                취소
+              </Button>
+              <Button onClick={handleSaveEdit} disabled={loading}>
+                {loading ? "저장 중..." : "수정 완료"}
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
