@@ -17,12 +17,12 @@ export function Nav() {
   return (
     <nav className="border-b bg-card shadow-sm border-border">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-8">
+        <div className="flex flex-col md:flex-row md:h-16 items-start md:items-center py-4 md:py-0 justify-between gap-4 md:gap-0">
+          <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8 w-full">
             <div className="text-xl font-bold text-primary flex items-center gap-2">
               <span>🔥</span> 지옥의 골프장 <span>⛳</span>
             </div>
-            <div className="hidden md:flex space-x-4">
+            <div className="flex flex-wrap gap-2">
               {items.map((item) => (
                 <Link
                   key={item.href}

@@ -46,7 +46,7 @@ export default function Home() {
         </CardHeader>
         <form onSubmit={onSubmit}>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">티업 날짜</label>
                 <Input type="date" name="date" required className="bg-background" />
