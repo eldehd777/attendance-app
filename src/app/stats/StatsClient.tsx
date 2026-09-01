@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -30,6 +30,7 @@ interface StatsData {
   name: string;
   count: number;
   recentCount: number;
+  isHellfire: boolean;
   events: EventData[];
 }
 
@@ -64,7 +65,7 @@ export default function StatsClient({ data }: { data: StatsData[] }) {
           <TableBody>
             {filtered.length > 0 ? (
               filtered.map((item, index) => {
-                const isHellfire = item.recentCount < 2;
+                const isHellfire = item.isHellfire;
                 return (
                   <TableRow 
                     key={item.name} 
@@ -104,7 +105,7 @@ export default function StatsClient({ data }: { data: StatsData[] }) {
           <DialogHeader>
             <DialogTitle className="text-2xl flex items-center gap-2">
               {selectedUser?.name}님의 출석 기록 
-              {selectedUser && selectedUser.recentCount < 2 && "🔥"}
+              {selectedUser?.isHellfire && "🔥"}
             </DialogTitle>
             <DialogDescription>
               총 {selectedUser?.count}회 참석하셨습니다. (최근 6개월: {selectedUser?.recentCount}회)
