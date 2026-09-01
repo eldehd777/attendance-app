@@ -9,6 +9,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "모임 관리 시스템",
   description: "운영진을 위한 출석 및 규칙 관리 앱",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({
