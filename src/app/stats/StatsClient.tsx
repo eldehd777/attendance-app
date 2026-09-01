@@ -77,7 +77,7 @@ export default function StatsClient({ data }: { data: StatsData[] }) {
                       <div className="flex items-center gap-2">
                         <span className={cn(
                           "font-semibold", 
-                          isHellfire && "text-destructive animate-pulse"
+                          isHellfire && "text-orange-500 animate-pulse"
                         )}>
                           {item.name} {isHellfire && "🔥"}
                         </span>

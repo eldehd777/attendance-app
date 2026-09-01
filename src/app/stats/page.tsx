@@ -1,4 +1,4 @@
-﻿import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import StatsClient from "./StatsClient";
 
 const prisma = new PrismaClient();
@@ -61,7 +61,7 @@ export default async function StatsPage() {
       </h1>
       <p className="text-muted-foreground">
         지옥의 골프 라운딩에서 끝까지 살아남아 누적 출석 횟수를 기록한 용자들입니다.<br/>
-        <span className="text-destructive font-semibold">⚠️ 주의: 가입(첫 참석) 후 6개월이 지났음에도 최근 6개월 내 참석이 2회 미만인 용자는 이름에 지옥불(🔥)이 붙습니다!</span>
+        <span className="text-orange-500 font-semibold">⚠️ 주의: 가입(첫 참석) 후 6개월이 지났음에도 최근 6개월 내 참석이 2회 미만인 용자는 이름에 지옥불(🔥)이 붙습니다!</span>
       </p>
       
       <StatsClient data={formattedData} />
