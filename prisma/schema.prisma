@@ -44,3 +44,12 @@ model Setting {
   id    String @id @default("admin_list")
   value String
 }
+
+model Award {
+  id         String   @id @default(uuid())
+  date       String
+  eventName  String
+  winnerName String
+  awardName  String
+  createdAt  DateTime @default(now())
+}

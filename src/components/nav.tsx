@@ -9,6 +9,7 @@ const items = [
   { name: "출석 통계", href: "/stats" },
   { name: "행사 히스토리", href: "/history" },
   { name: "미참여 기록", href: "/absences" },
+  { name: "시상 내역", href: "/awards" },
   { name: "모임 규칙", href: "/rules" },
 ];
 

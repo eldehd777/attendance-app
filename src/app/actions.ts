@@ -202,3 +202,54 @@ export async function saveAdmins(admins: string[], password: string) {
   revalidatePath("/");
   return { success: true };
 }
+
+
+export async function addAward(date: string, eventName: string, winnerName: string, awardName: string, password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+  try {
+    await prisma.award.create({
+      data: { date, eventName, winnerName, awardName }
+    });
+    revalidatePath("/awards");
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "저장 중 오류가 발생했습니다." };
+  }
+}
+
+export async function updateAward(id: string, date: string, eventName: string, winnerName: string, awardName: string, password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+  try {
+    await prisma.award.update({
+      where: { id },
+      data: { date, eventName, winnerName, awardName }
+    });
+    revalidatePath("/awards");
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "수정 중 오류가 발생했습니다." };
+  }
+}
+
+export async function deleteAward(id: string, password: string) {
+  const adminPw = process.env.ADMIN_PASSWORD || "7913";
+  if (password !== adminPw) {
+    return { success: false, error: "관리자 비밀번호가 일치하지 않습니다." };
+  }
+  try {
+    await prisma.award.delete({ where: { id } });
+    revalidatePath("/awards");
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "삭제 중 오류가 발생했습니다." };
+  }
+}
