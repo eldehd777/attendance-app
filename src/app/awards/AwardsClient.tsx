@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { addAward, updateAward, deleteAward } from "../actions";
@@ -138,8 +138,8 @@ export default function AwardsClient({ initialAwards }: { initialAwards: Award[]
           </DialogHeader>
           <form onSubmit={handleAdd} className="space-y-4 pt-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">날짜 (예: 2024-09-04)</label>
-              <Input required type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+              <label className="text-sm font-medium">날짜 (우측 달력 아이콘 클릭)</label>
+              <Input required type="date" value={date} onChange={(e) => setDate(e.target.value)} className="bg-background block w-full" />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">행사명 (예: 9월 정기라운드)</label>
@@ -169,8 +169,8 @@ export default function AwardsClient({ initialAwards }: { initialAwards: Award[]
           </DialogHeader>
           <form onSubmit={handleEdit} className="space-y-4 pt-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">날짜</label>
-              <Input required type="date" value={editDate} onChange={(e) => setEditDate(e.target.value)} />
+              <label className="text-sm font-medium">날짜 (우측 달력 아이콘 클릭)</label>
+              <Input required type="date" value={editDate} onChange={(e) => setEditDate(e.target.value)} className="bg-background block w-full" />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">행사명</label>
