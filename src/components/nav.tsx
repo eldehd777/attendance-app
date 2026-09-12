@@ -17,7 +17,7 @@ export function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-b bg-card shadow-sm border-border">
+    <nav className="border-b bg-card/70 backdrop-blur-md shadow-sm border-border sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row md:h-16 items-start md:items-center py-4 md:py-0 justify-between gap-4 md:gap-0">
           <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8 w-full">

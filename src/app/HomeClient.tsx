@@ -61,17 +61,10 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
   }
 
   return (
-    <div className="max-w-2xl mx-auto mt-8">
-      <Card className="border-secondary/50 shadow-lg shadow-red-900/20 bg-card/90 backdrop-blur-md">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <img 
-              src="/cute_golf_devil.jpg" 
-              alt="Cute Golf Devil" 
-              className="w-40 h-40 object-cover rounded-full border-4 border-secondary shadow-lg shadow-secondary/50" 
-            />
-          </div>
-          <CardTitle className="text-2xl flex justify-center items-center gap-2">
+    <div className="max-w-lg mx-auto mt-4 md:mt-12">
+      <Card className="border-secondary/50 shadow-2xl shadow-red-900/30 bg-card/70 backdrop-blur-xl">
+        <CardHeader className="text-center pb-2">
+          <CardTitle className="text-2xl flex justify-center items-center gap-2 drop-shadow-md">
             ⛳ 필드 및 출석 기록 📝
           </CardTitle>
         </CardHeader>
@@ -80,7 +73,7 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">티업 날짜</label>
-                <Input type="date" name="date" required className="bg-background" />
+                <Input type="date" name="date" required className="bg-background/60" />
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
@@ -92,7 +85,7 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
                 <select 
                   name="adminName" 
                   required 
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex h-10 w-full rounded-md border border-input bg-background/60 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="">운영진 선택...</option>
                   {admins.map(admin => (
@@ -104,7 +97,7 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
             
             <div className="space-y-2">
               <label className="text-sm font-medium">행사명 (구장명)</label>
-              <Input type="text" name="name" placeholder="예: 9월 불지옥 CC 라운딩" required className="bg-background" />
+              <Input type="text" name="name" placeholder="예: 9월 불지옥 CC 라운딩" required className="bg-background/60" />
             </div>
 
             <div className="space-y-2">
@@ -112,7 +105,7 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
               <Textarea 
                 name="attendees" 
                 placeholder="타이거 우즈, 필 미켈슨&#10;존 람&#10;로리 매킬로이"
-                className="min-h-[150px] bg-background"
+                className="min-h-[120px] bg-background/60"
                 required
               />
               <p className="text-xs text-muted-foreground">
