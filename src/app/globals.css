@@ -3,58 +3,70 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.13 0.02 15); /* Very dark reddish-charcoal (Hell) */
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.18 0.02 15);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.18 0.02 15);
-  --popover-foreground: oklch(0.95 0 0);
+  /* Background: Light, warm, cute peach/coral for "bright hell" */
+  --background: oklch(0.95 0.05 30);
+  --foreground: oklch(0.2 0.05 20); /* Dark reddish-brown text */
   
-  /* Primary: Golf Green */
-  --primary: oklch(0.6 0.15 145); 
-  --primary-foreground: oklch(0.1 0 0);
+  --card: oklch(0.98 0.02 30);
+  --card-foreground: oklch(0.2 0.05 20);
   
-  /* Secondary: Hellfire Red/Orange */
-  --secondary: oklch(0.6 0.2 30);
-  --secondary-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.98 0.02 30);
+  --popover-foreground: oklch(0.2 0.05 20);
   
-  --muted: oklch(0.25 0.02 15);
-  --muted-foreground: oklch(0.65 0 0);
+  /* Primary: Cute bright Golf Green */
+  --primary: oklch(0.7 0.15 140);
+  --primary-foreground: oklch(0.98 0 0);
   
-  --accent: oklch(0.6 0.2 30); /* Fire Accent */
-  --accent-foreground: oklch(0.95 0 0);
+  /* Secondary: Cute Hellfire Orange */
+  --secondary: oklch(0.75 0.18 45);
+  --secondary-foreground: oklch(0.2 0.05 20);
   
-  --destructive: oklch(0.5 0.2 30);
-  --destructive-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.9 0.05 35);
+  --muted-foreground: oklch(0.5 0.05 25);
   
-  --border: oklch(0.3 0.05 20);
-  --input: oklch(0.3 0.05 20);
-  --ring: oklch(0.6 0.2 30); /* Fire ring */
+  /* Accent: Playful fire red */
+  --accent: oklch(0.65 0.22 30); 
+  --accent-foreground: oklch(0.98 0 0);
   
-  --radius: 0.5rem;
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  
+  --border: oklch(0.85 0.05 35);
+  --input: oklch(0.9 0.05 35);
+  --ring: oklch(0.75 0.18 45); /* Fire ring */
+  
+  --radius: 1rem; /* Cuter, rounder corners */
 }
 
 .dark {
-  /* Same for dark since this is a dark-first theme */
-  --background: oklch(0.13 0.02 15); 
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.18 0.02 15);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.18 0.02 15);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.6 0.15 145); 
-  --primary-foreground: oklch(0.1 0 0);
-  --secondary: oklch(0.6 0.2 30);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.25 0.02 15);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.6 0.2 30);
-  --accent-foreground: oklch(0.95 0 0);
+  /* Keep it somewhat light, or make it a slightly deeper fiery sunset for dark mode */
+  --background: oklch(0.3 0.1 30); 
+  --foreground: oklch(0.95 0.05 30);
+  
+  --card: oklch(0.35 0.1 30);
+  --card-foreground: oklch(0.95 0.05 30);
+  
+  --popover: oklch(0.35 0.1 30);
+  --popover-foreground: oklch(0.95 0.05 30);
+  
+  --primary: oklch(0.7 0.15 140); 
+  --primary-foreground: oklch(0.2 0.05 20);
+  
+  --secondary: oklch(0.5 0.18 45);
+  --secondary-foreground: oklch(0.95 0.05 30);
+  
+  --muted: oklch(0.4 0.1 30);
+  --muted-foreground: oklch(0.8 0.05 30);
+  
+  --accent: oklch(0.65 0.22 30);
+  --accent-foreground: oklch(0.98 0 0);
+  
   --destructive: oklch(0.5 0.2 30);
-  --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.3 0.05 20);
-  --input: oklch(0.3 0.05 20);
-  --ring: oklch(0.6 0.2 30);
+  --destructive-foreground: oklch(0.95 0.05 30);
+  
+  --border: oklch(0.45 0.1 30);
+  --input: oklch(0.45 0.1 30);
+  --ring: oklch(0.75 0.18 45);
 }
 
 @theme {
@@ -89,5 +101,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Cute dotted background pattern combining tiny golf balls and sparks */
+    background-image: radial-gradient(var(--secondary) 2px, transparent 2px), radial-gradient(var(--primary) 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    background-attachment: fixed;
   }
 }

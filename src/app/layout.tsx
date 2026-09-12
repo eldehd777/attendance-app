@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="dark">
+    <html lang="ko">
       <body className={inter.className + " min-h-screen bg-background text-foreground"}>
         <Nav />
         <main className="container mx-auto p-4 md:p-8">
