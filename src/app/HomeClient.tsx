@@ -74,9 +74,6 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
           <CardTitle className="text-2xl flex justify-center items-center gap-2">
             ⛳ 필드 및 출석 기록 📝
           </CardTitle>
-          <CardDescription className="text-muted-foreground">
-            새로운 라운딩 정보와 지옥훈련(?)을 견딘 참석자 명단을 입력해주세요. 참석자 이름은 쉼표(,)나 줄바꿈으로 한 번에 붙여넣을 수 있습니다.
-          </CardDescription>
         </CardHeader>
         <form onSubmit={onSubmit}>
           <CardContent className="space-y-4">

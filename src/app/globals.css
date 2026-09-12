@@ -99,16 +99,16 @@
   * {
     @apply border-border outline-ring/50;
   }
+  @keyframes intense-hellfire {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
   body {
     @apply text-foreground;
-    background-color: #ffc8b5;
-    /* Hellish gradient from cute peach to fiery red/orange at the bottom, plus dots */
-    background-image: 
-      radial-gradient(var(--secondary) 2.5px, transparent 2.5px), 
-      radial-gradient(var(--primary) 2.5px, transparent 2.5px),
-      linear-gradient(to bottom, #ffe4df 0%, #ffc8b5 40%, #ff7e5a 100%);
-    background-size: 50px 50px, 50px 50px, 100% 100vh;
-    background-position: 0 0, 25px 25px, 0 0;
+    background: linear-gradient(-45deg, #4a0000, #ff0000, #ff5400, #ff9e00, #a30000);
+    background-size: 400% 400%;
+    animation: intense-hellfire 8s ease infinite;
     background-attachment: fixed;
   }
 }
