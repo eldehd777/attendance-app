@@ -63,8 +63,15 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
   return (
     <div className="max-w-2xl mx-auto mt-8">
       <Card className="border-secondary/50 shadow-lg shadow-red-900/20">
-        <CardHeader>
-          <CardTitle className="text-2xl flex items-center gap-2">
+        <CardHeader className="text-center">
+          <div className="flex justify-center mb-4">
+            <img 
+              src="/cute_golf_devil.jpg" 
+              alt="Cute Golf Devil" 
+              className="w-40 h-40 object-cover rounded-full border-4 border-secondary shadow-lg shadow-secondary/50" 
+            />
+          </div>
+          <CardTitle className="text-2xl flex justify-center items-center gap-2">
             ⛳ 필드 및 출석 기록 📝
           </CardTitle>
           <CardDescription className="text-muted-foreground">
