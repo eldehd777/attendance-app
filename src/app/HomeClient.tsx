@@ -62,7 +62,7 @@ export default function HomeClient({ initialAdmins }: { initialAdmins: string[] 
 
   return (
     <div className="max-w-2xl mx-auto mt-8">
-      <Card className="border-secondary/50 shadow-lg shadow-red-900/20">
+      <Card className="border-secondary/50 shadow-lg shadow-red-900/20 bg-card/90 backdrop-blur-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
             <img 

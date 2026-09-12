@@ -99,16 +99,12 @@
   * {
     @apply border-border outline-ring/50;
   }
-  @keyframes intense-hellfire {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
   body {
     @apply text-foreground;
-    background: linear-gradient(-45deg, #4a0000, #ff0000, #ff5400, #ff9e00, #a30000);
-    background-size: 400% 400%;
-    animation: intense-hellfire 8s ease infinite;
+    background-image: url('/bg_cauldron.jpg');
+    background-size: cover;
+    background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
   }
 }
